@@ -62,3 +62,5 @@ export class OllamaProvider extends BaseProvider {
     return ollamaInstance;
   }
 }
+
+export default OllamaProvider;
