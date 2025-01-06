@@ -65,14 +65,14 @@ export default function ConnectionsTab() {
     const isValid = await verifyGitHubCredentials();
 
     if (isValid) {
-      Cookies.set('githubUsername', githubUsername);
-      Cookies.set('githubToken', githubToken);
+      Cookies.set('githubUsername', githubUsername, { secure: true, httpOnly: true });
+      Cookies.set('githubToken', githubToken, { secure: true, httpOnly: true });
       logStore.logSystem('GitHub connection settings updated', {
         username: githubUsername,
         hasToken: !!githubToken,
       });
       toast.success('GitHub credentials verified and saved successfully!');
-      Cookies.set('git:github.com', JSON.stringify({ username: githubToken, password: 'x-oauth-basic' }));
+      Cookies.set('git:github.com', JSON.stringify({ username: githubToken, password: 'x-oauth-basic' }), { secure: true, httpOnly: true });
       setIsConnected(true);
     } else {
       toast.error('Invalid GitHub credentials. Please check your username and token.');
